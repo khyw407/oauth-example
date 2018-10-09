@@ -1,5 +1,41 @@
 # <oauth-example>
 
+
+# 0. OAuth란?
+
+
+*OAuth 2.0
+
+    - OAuth 2.0은 인증 및 권한부여를 관리하는 범용 프레임워크
+      OAuth 기반 서비스의 API를 호출을 할 때에는, HTTP 헤더에 access token을 포함하여 요청을 보내며, 
+      서비스는 access token을 검사하면서 이 요청이 유효한지 판단하여 적절한 결과를 응답합니다.
+      (사용자 입장에서는 access token 획득이 중요, 서비스 입장에서는 access token 발급이 중요)
+      
+      
+*OAuth 2.0의 Roles
+
+    - Resource Owner(자원 소유자)는 protected resource(보호된 자원)에 접근하는 권한을 제공
+    
+    - Resource server(자원 서버)는 access token을 사용해서 요청을 받을 때, 권한을 검증한 후 적절한 결과를 응답
+    
+    - Client(클라이언트)는 Resource Owner(자원 소유자)의 protected resource에 접근을 요청을 하는 애플리케이션
+    
+    - Authorization Server(권한 서버)는 Client가 성공적으로 access token을 발급받은 이후에 Resource Owner를 인증하고 권한부여
+    
+    
+*OAuth 2.o의 Resource Owner Password Credentials Grant 방식 예시(테스트를 해당 방식으로 진행하였음)
+<img width="482" alt="oauth resource owner password credentilas grant" src="https://user-images.githubusercontent.com/37721713/46660227-8c86c700-cbf1-11e8-8e75-87e76fffb26b.PNG">
+
+
+*Access Token 획득 테스트 예시(Postman 사용)
+<img width="769" alt="oauthserver_test" src="https://user-images.githubusercontent.com/37721713/46660649-72011d80-cbf2-11e8-9c4e-9099531b300d.PNG">
+
+
+*Access Token을 가지고 Api서버에 요청 테스트(Postman 사용)
+<img width="763" alt="apiserver_test" src="https://user-images.githubusercontent.com/37721713/46660647-71688700-cbf2-11e8-932e-41e4cc5f1495.PNG">
+
+
+
 # 1. OauthserverApplication.java
 <img width="550" alt="oauthserverapplication" src="https://user-images.githubusercontent.com/37721713/46654432-c81a9480-cbe3-11e8-9f8f-44f36df075a2.PNG">
 
