@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import com.test.oauthserver.service.MyClientDetailService;
 
 @Configuration
-@EnableAuthorizationServer //Oauth2 인가 서버
+@EnableAuthorizationServer
 public class OauthServerConfiguration extends AuthorizationServerConfigurerAdapter{
 	
 	@Autowired
@@ -25,12 +25,11 @@ public class OauthServerConfiguration extends AuthorizationServerConfigurerAdapt
     @Autowired
     private TokenStore tokenStore;
     
-    //Oauth 서버가 동작하기 위한 endpoint 정보를 설정
-    //토큰 발급 및 저장에 대한 설정 + 스프링시큐리티와 Oauth를 연결
     /*
      * Input Type	: AuthorizationServerEndpointsConfigurer
      * Output Type	: void
-     * Description	: 
+     * Description	: OAuth2 서버가 작동하기 위한 endpoint에 대한 정보를 설정
+     * 				    토큰 발급 및 저장에 대한 설정과 Spring Security와 OAuth를 연결한다.
      */
 	@Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -38,22 +37,17 @@ public class OauthServerConfiguration extends AuthorizationServerConfigurerAdapt
 			.authenticationManager(this.authenticationManager);
 	}
 	
-	//클라이언트에 대한 정보를 가져오는 부분
-	//현재 DB에 클라이언트 정보를 INSERT 해놨기 때문에
-	//서버가 구동되면서 H2 DB에 자동으로 넣어놨음.
 	 /*
      * Input Type	: ClientDetailsServiceConfigurer
      * Output Type	: void
-     * Description	: 클라이언트에 대한 정보를 DB (H2 DB)에서 가져온다.
-     * 				  schema.sql, data.sql을 통해 DB에 데이터를 INSERT 했고, OAuth 서버 구동시 데이터가 들어감.
+     * Description	: API를 요청하는 클라이언트 정보를 설정한다. 
+     * 				  Client 서버(http://localhost:8083)로부터 클라이언트에 대한 정보를 가져와서 설정한다.
      */
 	@Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.withClientDetails(this.myClientDetailService);
 	}
 	
-	// Oauth 서버에서 발급한 access token을  API서버가 사용하면서 해당 토큰이 
-	// 사용가능한지를 체크하는 부분
 	 /*
      * Input Type	: AuthorizationServerSecurityConfigurer
      * Output Type	: void
