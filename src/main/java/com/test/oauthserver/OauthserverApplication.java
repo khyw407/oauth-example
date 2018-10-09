@@ -13,6 +13,11 @@ public class OauthserverApplication {
 	
 	@RequestMapping("/oauth")
 	public String test() {
-		return "hello oauth";
+		return "hello oauth server";
 	}
 }
+
+/*
+ *프로젝트 생성시 자동으로 만들어지는 클래스이다. 스프링부트는 내장 톰캣을 지원하여 따로 서버를 돌릴 필요 없이
+ *자바 어플리케이션을 실행시키는 것처럼 
+ */
