@@ -1,7 +1,7 @@
 # <oauth-example>
 
 # 1. OauthserverApplication.java
-<img width="531" alt="oauthserverapplication" src="https://user-images.githubusercontent.com/37721713/46654432-c81a9480-cbe3-11e8-9f8f-44f36df075a2.PNG">
+<img width="550" alt="oauthserverapplication" src="https://user-images.githubusercontent.com/37721713/46654432-c81a9480-cbe3-11e8-9f8f-44f36df075a2.PNG">
 
 *@SpringBootApplication 
 
@@ -26,10 +26,10 @@
     -스프링부트 애플리케이션을 실행시키는 메소드
 
 # 2. OauthServerConfiguration.java
-<img width="528" alt="oauthserverconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654433-c8b32b00-cbe3-11e8-9f35-8f0a5df2b029.PNG">
+<img width="550" alt="oauthserverconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654433-c8b32b00-cbe3-11e8-9f35-8f0a5df2b029.PNG">
 
 
-<img width="529" alt="oauthserverconfiguration2" src="https://user-images.githubusercontent.com/37721713/46654434-c8b32b00-cbe3-11e8-83cd-9a4d44852034.PNG">
+<img width="550" alt="oauthserverconfiguration2" src="https://user-images.githubusercontent.com/37721713/46654434-c8b32b00-cbe3-11e8-83cd-9a4d44852034.PNG">
 
 
 *@Autowired
@@ -56,14 +56,14 @@
     
 
 # 3. TokenStoreConfiguration.java
-<img width="547" alt="tokenstoreconfiguration" src="https://user-images.githubusercontent.com/37721713/46654435-c8b32b00-cbe3-11e8-8b16-045648ce9d81.PNG">
+<img width="550" alt="tokenstoreconfiguration" src="https://user-images.githubusercontent.com/37721713/46654435-c8b32b00-cbe3-11e8-8b16-045648ce9d81.PNG">
 
 
 # 4. MyUserDetailServiceConfiguration.java
-<img width="595" alt="myuserdetailserviceconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654430-c81a9480-cbe3-11e8-9ce6-8cf9f28d4668.PNG">
+<img width="550" alt="myuserdetailserviceconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654430-c81a9480-cbe3-11e8-9ce6-8cf9f28d4668.PNG">
 
 
-<img width="505" alt="myuserdetailserviceconfiguration2" src="https://user-images.githubusercontent.com/37721713/46654431-c81a9480-cbe3-11e8-982f-57d09d427e29.PNG">
+<img width="550" alt="myuserdetailserviceconfiguration2" src="https://user-images.githubusercontent.com/37721713/46654431-c81a9480-cbe3-11e8-982f-57d09d427e29.PNG">
 
 
 *WebSecurityConfigurerAdapter
@@ -72,7 +72,7 @@
 
 
 # 5. MyClientDetailService.java
-<img width="643" alt="myclientdetailservice" src="https://user-images.githubusercontent.com/37721713/46654427-c781fe00-cbe3-11e8-81cb-b767a554f03e.PNG">
+<img width="550" alt="myclientdetailservice" src="https://user-images.githubusercontent.com/37721713/46654427-c781fe00-cbe3-11e8-81cb-b767a554f03e.PNG">
 
 
 *@Component
@@ -86,7 +86,7 @@
 
 
 # 6. MyUserDetailService.java
-<img width="649" alt="myuserdetailservice" src="https://user-images.githubusercontent.com/37721713/46654429-c781fe00-cbe3-11e8-85c4-6b27d28d8d7e.PNG">
+<img width="550" alt="myuserdetailservice" src="https://user-images.githubusercontent.com/37721713/46654429-c781fe00-cbe3-11e8-85c4-6b27d28d8d7e.PNG">
 
 
 *@Component
@@ -100,10 +100,10 @@
 
 
 # 7. Account.java
-<img width="377" alt="account1" src="https://user-images.githubusercontent.com/37721713/46654423-c6e96780-cbe3-11e8-812f-d5085b4ccd39.PNG">
+<img width="550" alt="account1" src="https://user-images.githubusercontent.com/37721713/46654423-c6e96780-cbe3-11e8-812f-d5085b4ccd39.PNG">
 
 
-<img width="263" alt="account2" src="https://user-images.githubusercontent.com/37721713/46654424-c6e96780-cbe3-11e8-894e-75e8f83ae3ee.PNG">
+<img width="550" alt="account2" src="https://user-images.githubusercontent.com/37721713/46654424-c6e96780-cbe3-11e8-894e-75e8f83ae3ee.PNG">
 
 
 *@Data
@@ -127,7 +127,7 @@
 
 
 # 8. Client.java
-<img width="276" alt="client" src="https://user-images.githubusercontent.com/37721713/46654426-c781fe00-cbe3-11e8-92f9-8c43e72d96d6.PNG">
+<img width="550" alt="client" src="https://user-images.githubusercontent.com/37721713/46654426-c781fe00-cbe3-11e8-92f9-8c43e72d96d6.PNG">
 
 
 *@Data
