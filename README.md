@@ -196,6 +196,7 @@
 
     *Client를 Resource Server에 등록을 완료하고 Client ID와 Client Secret 정보를 가지고 있다고 가정한다.
 
+    
     Resource Owner가 Client(우리가 만든 서비스)에 접속
     
     -> Client에게 인증요청에 대한 화면(사용자의 동의)이 나온다.
@@ -213,7 +214,7 @@
     -> Client는 access token을 이용해서 Resource Server에서 데이터를 가져올 수 있음.(즉 API 사용 가능)
 
 
-*scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
+    *scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
 
 
 7) authorized code 획득 시 파라미터 설명
@@ -230,9 +231,7 @@
       
         offline – access_type을 offline으로 지정하면 access token을 줄 때, refresh token을 같이 주는데 Client는 access token과 refresh token을 모두 다 저장하고 access token 만료 시 Resource Server에게 refresh token을 다시 보내서 access token을 재발급한다.
 
-    -redirect_url : Resource Owner가 Resource Server의 인증화면으로 갔다가 Resource Owner가 허가하는 과정이 끝나면 
-    
-    Resource Server는 code값을 Client에 다시 보내주어야 하는데, 어느 주소로 Client에게 보내야 받을 수 있는지를 나타내는 것
+    -redirect_url : Resource Owner가 Resource Server의 인증화면으로 갔다가 Resource Owner가 허가하는 과정이 끝나면 Resource Server는 code값을 Client에 다시 보내주어야 하는데, 어느 주소로 Client에게 보내야 받을 수 있는지를 나타내는 것
 
 8) access token 받기(Postman 사용 예시)
 
@@ -242,30 +241,7 @@
 
 
 
-# 0. OAuth란?
-
-
-*OAuth 2.0
-
-    - OAuth 2.0은 인증 및 권한부여를 관리하는 범용 프레임워크
-      OAuth 기반 서비스의 API를 호출을 할 때에는, HTTP 헤더에 access token을 포함하여 요청을 보내며, 
-      서비스는 access token을 검사하면서 이 요청이 유효한지 판단하여 적절한 결과를 응답합니다.
-      (사용자 입장에서는 access token 획득이 중요, 서비스 입장에서는 access token 발급이 중요)
-      
-      
-*OAuth 2.0의 Roles
-
-    - Resource Owner(자원 소유자)는 protected resource(보호된 자원)에 접근하는 권한을 제공
-    
-    - Resource server(자원 서버)는 access token을 사용해서 요청을 받을 때, 권한을 검증한 후 적절한 결과를 응답
-    
-    - Client(클라이언트)는 Resource Owner(자원 소유자)의 protected resource에 접근을 요청을 하는 애플리케이션
-    
-    - Authorization Server(권한 서버)는 Client가 성공적으로 access token을 발급받은 이후에 Resource Owner를 인증하고 권한부여
-    
-    
-*OAuth 2.o의 Resource Owner Password Credentials Grant 방식 예시(테스트를 해당 방식으로 진행하였음)
-<img width="482" alt="oauth resource owner password credentilas grant" src="https://user-images.githubusercontent.com/37721713/46660227-8c86c700-cbf1-11e8-8e75-87e76fffb26b.PNG">
+# 2. OAuth 테스트 예시
 
 
 *Access Token 획득 테스트 예시(Postman 사용)
@@ -277,7 +253,7 @@
 
 
 
-# 1. OauthserverApplication.java
+# 3. OauthserverApplication.java
 <img width="550" alt="oauthserverapplication" src="https://user-images.githubusercontent.com/37721713/46654432-c81a9480-cbe3-11e8-9f8f-44f36df075a2.PNG">
 
 *@SpringBootApplication 
@@ -302,7 +278,7 @@
 
     -스프링부트 애플리케이션을 실행시키는 메소드
 
-# 2. OauthServerConfiguration.java
+# 4. OauthServerConfiguration.java
 <img width="550" alt="oauthserverconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654433-c8b32b00-cbe3-11e8-9f35-8f0a5df2b029.PNG">
 
 
@@ -332,11 +308,11 @@
         
     
 
-# 3. TokenStoreConfiguration.java
+# 5. TokenStoreConfiguration.java
 <img width="550" alt="tokenstoreconfiguration" src="https://user-images.githubusercontent.com/37721713/46654435-c8b32b00-cbe3-11e8-8b16-045648ce9d81.PNG">
 
 
-# 4. MyUserDetailServiceConfiguration.java
+# 6. MyUserDetailServiceConfiguration.java
 <img width="550" alt="myuserdetailserviceconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654430-c81a9480-cbe3-11e8-9ce6-8cf9f28d4668.PNG">
 
 
@@ -348,7 +324,7 @@
     - 웹 기반 보안 기능을 제공하는 클래스이며 URL에 대한 인증, 사용자 생성 등이 가능
 
 
-# 5. MyClientDetailService.java
+# 7. MyClientDetailService.java
 <img width="550" alt="myclientdetailservice" src="https://user-images.githubusercontent.com/37721713/46654427-c781fe00-cbe3-11e8-81cb-b767a554f03e.PNG">
 
 
@@ -362,7 +338,7 @@
     - 스프링에서 제공하는 HTTP 통신에 유용하게 쓸 수 있는 템플릿이며, HTTP 서버와의 통신을 단순화하고 RESTful 원칙을 지킨다.
 
 
-# 6. MyUserDetailService.java
+# 8. MyUserDetailService.java
 <img width="550" alt="myuserdetailservice" src="https://user-images.githubusercontent.com/37721713/46654429-c781fe00-cbe3-11e8-85c4-6b27d28d8d7e.PNG">
 
 
@@ -376,7 +352,7 @@
     - 스프링에서 제공하는 HTTP 통신에 유용하게 쓸 수 있는 템플릿이며, HTTP 서버와의 통신을 단순화하고 RESTful 원칙을 지킨다.
 
 
-# 7. Account.java
+# 9. Account.java
 <img width="550" alt="account1" src="https://user-images.githubusercontent.com/37721713/46654423-c6e96780-cbe3-11e8-812f-d5085b4ccd39.PNG">
 
 
@@ -403,7 +379,7 @@
     - 스프링 시큐리티에서 사용되는 유저의 세부정보 관련 인터페이스
 
 
-# 8. Client.java
+# 10. Client.java
 <img width="550" alt="client" src="https://user-images.githubusercontent.com/37721713/46654426-c781fe00-cbe3-11e8-92f9-8c43e72d96d6.PNG">
 
 
@@ -422,7 +398,7 @@
     - 모든 필드 값을 파라미터로 받는 생성자를 만들어 주는 어노테이션
 
 
-# 9. application.yml
+# 11. application.yml
 <img width="219" alt="application" src="https://user-images.githubusercontent.com/37721713/46654425-c6e96780-cbe3-11e8-9b99-d014fde14ad7.PNG">  
 
 
