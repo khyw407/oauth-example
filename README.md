@@ -194,7 +194,6 @@
 
 6) 일반적인 OAuth의 프로세스(구글과 같은 서비스에서는 일반적으로 Authorization Code방식을 사용한다.)
 
-    
     Resource Owner가 Client(우리가 만든 서비스)에 접속
     
     -> Client에게 인증요청에 대한 화면(사용자의 동의)이 나온다.
