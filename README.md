@@ -1,7 +1,5 @@
 # <oauth-example>
 
-
-
 # 0. OAuth 동작 메커니즘
 
 1) 용어정리
@@ -15,8 +13,6 @@
     - Authorization Server : Authorization을 획득한 Client에게 access token을 발급
 
     *OAuth는 표준화된 기술이며 수많은 Resource Server이 폭넓게 채택하고 있다. Authorization Server와 Resource Server를 한 곳에서 같이 사용하는 경우가 많음.
-
-
 
 
 2) 과거 전통적인 방식(OAuth 개념 적용 이전)
@@ -33,8 +29,6 @@
 
 
 *단점 : 보안의 문제 발생, 예를 들어 Resource Server에 매우 중요한 기밀 데이터가 있고 Resource Owner는 자신의 ID와 Password를 사용해서 수많은 서비스를 접근한다면 Client에게 자신의 ID, Password를 주는 것은 매우 위험.
-
-
 
 
 3) OAuth 적용 방식(Google 서비스 예시- Authorization Code방식)
