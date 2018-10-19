@@ -16,7 +16,7 @@
 
 
 2. 과거 전통적인 방식(OAuth 개념 적용 이전)
-<img width="450" alt="beforeoauth" src="https://user-images.githubusercontent.com/37721713/47208230-3d4a4e80-d3c8-11e8-8980-956f1cd77d7e.PNG">
+<img width="399" alt="beforeoauth" src="https://user-images.githubusercontent.com/37721713/47211995-fb260a80-d3d1-11e8-90cd-f1ff07ae4ff3.PNG">
 
     Resource Owner가 Client에 접속하면 ID와 Password를 요청한다
 
