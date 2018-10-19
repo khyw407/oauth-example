@@ -14,8 +14,7 @@
 
     - Authorization Server : Authorization을 획득한 Client에게 access token을 발급
 
-
-*OAuth는 표준화된 기술이며 수많은 Resource Server이 폭넓게 채택하고 있다. Authorization Server와 Resource Server를 한 곳에서 같이 사용하는 경우가 많음.
+    *OAuth는 표준화된 기술이며 수많은 Resource Server이 폭넓게 채택하고 있다. Authorization Server와 Resource Server를 한 곳에서 같이 사용하는 경우가 많음.
 
 
 2) 과거 전통적인 방식(OAuth 개념 적용 이전)
