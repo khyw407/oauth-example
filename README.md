@@ -16,7 +16,7 @@
 
 
 2. 과거 전통적인 방식(OAuth 개념 적용 이전)
-<img width="386" alt="beforeoauth" src="https://user-images.githubusercontent.com/37721713/47208230-3d4a4e80-d3c8-11e8-8980-956f1cd77d7e.PNG">
+<img width="450" alt="beforeoauth" src="https://user-images.githubusercontent.com/37721713/47208230-3d4a4e80-d3c8-11e8-8980-956f1cd77d7e.PNG">
 
     Resource Owner가 Client에 접속하면 ID와 Password를 요청한다
 
@@ -32,7 +32,7 @@
 
 
 3. OAuth 적용 방식(Google 서비스 예시- Authorization Code방식)
-<img width="454" alt="wholeprocess" src="https://user-images.githubusercontent.com/37721713/47208241-3e7b7b80-d3c8-11e8-9a5b-a513593812a9.PNG">
+<img width="450" alt="wholeprocess" src="https://user-images.githubusercontent.com/37721713/47208241-3e7b7b80-d3c8-11e8-9a5b-a513593812a9.PNG">
 
 
     Client는 우리의 서비스(Client를 의미)가 당신들(Resource Server)의 서비스를 사용한다는 의미의 등록 과정을 우선적으로 수행한다.
@@ -93,7 +93,7 @@
 *프로세스
 
 
-<img width="442" alt="oauth1 0aflow" src="https://user-images.githubusercontent.com/37721713/47208235-3de2e500-d3c8-11e8-947b-05e916ef2857.PNG">
+<img width="500" alt="oauth1 0aflow" src="https://user-images.githubusercontent.com/37721713/47208235-3de2e500-d3c8-11e8-947b-05e916ef2857.PNG">
 
 
     Request token의 요청과 발급
@@ -125,14 +125,12 @@
 
 5) OAuth 2.0의 인증방식
 
-    OAuth 2.0의 인증방식은 크게 4가지이며 
-    
-    Authorization Code Grant, Implicit Grant, Resource Owner Password Credentials Grant, Client Credentials Grant로 구성된다.
+    OAuth 2.0의 인증방식은 크게 4가지이며 Authorization Code Grant, Implicit Grant, Resource Owner Password Credentials Grant, Client Credentials Grant로 구성된다.
     
     
     또한 다음과 같이 타입을 나눌 수도 있다.
 
-<img width="390" alt="oauth2 0 category" src="https://user-images.githubusercontent.com/37721713/47208236-3de2e500-d3c8-11e8-8925-ba26b8b2065f.PNG">
+<img width="500" alt="oauth2 0 category" src="https://user-images.githubusercontent.com/37721713/47208236-3de2e500-d3c8-11e8-8925-ba26b8b2065f.PNG">
 
 
     * 3-legged : 3-legged OAuth는 OAuth의 가장 일반적인 구현 시나리오이다. 
@@ -182,6 +180,8 @@
     Client를 믿을 수 없을 때는 매우 위험하기 때문에 API 서비스의 공식 어플리케이션이나 믿을 수 있는 Client에 한해서만 사용해야 함
     
     로그인시에 API에 POST로 grant_type=password라고 넘긴다.
+    
+    
 
 - Client Credentials Grant
 
@@ -193,8 +193,6 @@
 
 
 6) 일반적인 OAuth의 프로세스(구글과 같은 서비스에서는 일반적으로 Authorization Code방식을 사용한다.)
-
-    *Client를 Resource Server에 등록을 완료하고 Client ID와 Client Secret 정보를 가지고 있다고 가정한다.
 
     
     Resource Owner가 Client(우리가 만든 서비스)에 접속
@@ -214,18 +212,17 @@
     -> Client는 access token을 이용해서 Resource Server에서 데이터를 가져올 수 있음.(즉 API 사용 가능)
 
 
+    
+    *Client를 Resource Server에 등록을 완료하고 Client ID와 Client Secret 정보를 가지고 있다고 가정한다.
+    
     *scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
 
 
 7) authorized code 획득 시 파라미터 설명
 
-    -scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 
-    
-    Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
+    -scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
 
-    -access_type : access token을 Client가 계속 가지고 있으면, 유출 등의 위험이 있으므로 이를 관리하기 위한 방법. 
-    
-    (Resource Owner에게 허가를 받는 것이 부담이기 때문에 2가지 타입이 존재)
+    -access_type : access token을 Client가 계속 가지고 있으면, 유출 등의 위험이 있으므로 이를 관리하기 위한 방법. (Resource Owner에게 허가를 받는 것이 부담이기 때문에 2가지 타입이 존재)
 
         online – refresh token을 발급하지 않고, access token 만료 시 폐기(다시 Resource Owner에게 허가 받아야 함)
       
