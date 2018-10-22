@@ -220,7 +220,7 @@
     *scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
 
 
-7) authorized code 획득 시 파라미터 설명
+7) authorization code 획득 시 파라미터 설명
 
     -scope : Resource Server(구글, 페이스북 등)의 어떤 서비스에 접근할 권한이 무엇인지를 Resource Owner와 Resource Server 모두에게 알려주기 위해 지정하는 것을 의미.
 
@@ -234,7 +234,7 @@
 
 8) access token 받기(Postman 사용 예시)
 
-*Resource Server로부터 authorized code를 받은 것이 완료된 상황이라고 가정.
+*Resource Server로부터 authorization code를 받은 것이 완료된 상황이라고 가정.
 
 <img width="746" alt="testexample" src="https://user-images.githubusercontent.com/37721713/47208240-3e7b7b80-d3c8-11e8-9a34-5df3badb8200.PNG">
 
