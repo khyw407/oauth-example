@@ -297,6 +297,7 @@
 *@EnableAuthorizationServer
 
     - OAuth2의 인증서버를 구성하는 어노테이션, 해당 어노테이션 설정만으로도 인증서버의 역할을 수행한다.
+      스프링 부트 애플리케이션이 기동할 때 configure() 메소드들이 실행되면서 initialize가 된다. 이후 Authorization Server역할을 수행함.
     
     
 *AuthorizationServerConfigurerAdapter
@@ -305,11 +306,36 @@
       AuthorizationServerConfigurer는 스프링 시큐리티 OAuth가 초기화 단계에서 호출하는 콜백 인터페이스로 configure 메소드를
       오버라이드하여 서비스의 동작을 바꿀 수 있다.
         
-    
+
+*configure(AuthorizationServerEndpointsConfigurer endpoints)
+
+    - OAuth 서버에서 발급하는 토큰을 관리하는 주체(TokenStore), 인증에 대한 설정을 하는 주체(AuthenticationManager)를 설정한다.
+      OAuth는 인가(Authorization)을 담당하기 때문에 인증(Athentication)은 스프링 시큐리티에서 처리해야 하는데, 
+      이것을 연결해 주는 것이 AuthenticationManager이다.
+
+
+*configure(ClientDetailsServiceConfigurer clients)
+
+    - Client에 대한 관리를 어떻게 할 것인지에 대한 설정이다. (Client 저장소 설정에 대한 개념)
+      위의 소스에서는 ClientDetailsService를 사용해 Client를 관리하는데, 이것은 DB(관계, 비관계 모두 포함)를 사용해 Client를 관리하고자 할 때
+      해당 데이터 셋에 대해 고려하지 않고, HTTP 형태로 데이터를 주고 받고자 할 때 사용한다. 
+      Bean으로 등록되어 있는 MyClientDetailService를 autowired하여 등록한다.
+      Client 관리 방법에는 inMemory, DB 등의 방법이 존재한다.
+
+
 
 # 5. TokenStoreConfiguration.java
 <img width="550" alt="tokenstoreconfiguration" src="https://user-images.githubusercontent.com/37721713/46654435-c8b32b00-cbe3-11e8-8b16-045648ce9d81.PNG">
 
+
+*설명
+
+    - access token 저장을 위한 설정이다. JDBC를 통해 H2 DB에 접근하기 위해 DataSource를 사용하였다.
+      토큰 관리는 일반적으로 inMemory, DB, JWT 3가지를 사용한다.
+      토큰의 경우 매우 중요한 요소이기 때문에 반드시 발급하고 그것을 관리하는 과정이 필요하므로 DB, JWT 방식을 사용하는 것이 가장 좋다.
+      대규모/대용량 아키텍처 기반의 애플리케이션은 토큰 암호화 과정에서 발생하는 워크로드도 부담이 될 수 있으므로 JWT 방식 사용을 선호한다.
+    
+    
 
 # 6. MyUserDetailServiceConfiguration.java
 <img width="550" alt="myuserdetailserviceconfiguration1" src="https://user-images.githubusercontent.com/37721713/46654430-c81a9480-cbe3-11e8-9ce6-8cf9f28d4668.PNG">
@@ -321,6 +347,32 @@
 *WebSecurityConfigurerAdapter
 
     - 웹 기반 보안 기능을 제공하는 클래스이며 URL에 대한 인증, 사용자 생성 등이 가능
+      스프링 시큐리티를 사용하기 위해서 사용하는 가장 추천되는 방법이다. WebSecurityConfigurer 인터페이스에 대한 기본 메소드들이 구현되어 있고,
+      이것을 오버라이딩 하여 개발자가 원하는 방식으로 동작할 수 있도록 수정할 수 있다.
+    
+    
+*AuthenticationManager authenticationManagerBean()
+
+    - OAuth는 인가를 담당하고, 인증은 스프링 시큐리티에서 처리하는데 AuthenticationManager가 OAuth와 스프링 시큐리티를 연결해주는 역할을 한다.
+    
+    
+*configure(AuthenticationManagerBuilder authenticationManagerBuilder)
+
+    - UserDetailsService(스프링에서 제공하는 사용자 세부 설정 서비스)를 설정하기 위한 오버라이딩이다. 
+      즉, 인증 절차 지원을 위한 사용자 저장소 설정을 하는 의미를 갖는다.
+      userDetailsService() 메소드를 통해 저장소에 대한 설정을 하고, 여기서는 UserDetailsService 인터페이스의 구현체를 사용한다.
+      User에 대한 관리가 있어야 애플리케이션이 정상적으로 동작한다. 만약 이런 기능이 없으면 요청은 들어오나 User에 대한 인증을 못하므로
+      로그인과 같은 서비스를 이용할 수가 없다.
+    
+    
+*void configure(HttpSecurity http)
+
+    - 인터셉터로 request를 안전하게 보호하여 보내기 위한 방법을 설정하기 위한 오버라이딩
+      authorizedRequests()를 호출하고, 다음에 반환되는 객체로 호출되는 메소드들은 요청 보안 수준의 세부 설정을 한다.
+      http.csrf().disable()은 CSRF(Cross-Site Request Forgery)에 대한 설정이다. Spring은 디폴트로 CSRF 방지 기능이 활성화되어 있다.
+      CSRF 설정이 비활성화되면 제출되는 폼을 성공적으로 얻는데 문제가 발생할 수 있다. (테스트 때문에 여기서는 disable처리)
+      스프링 시큐리티는 동기화 장치 토큰으로 CSRF보호에 대한 내용을 구현한다. 상태 변경 요청(PUT, POST...)을 가로채 CSRF 토큰을 확인하는데
+      토큰이 일치하지 않거나 없으면 요청은 실패한다.
 
 
 # 7. MyClientDetailService.java
@@ -337,6 +389,18 @@
     - 스프링에서 제공하는 HTTP 통신에 유용하게 쓸 수 있는 템플릿이며, HTTP 서버와의 통신을 단순화하고 RESTful 원칙을 지킨다.
 
 
+*ClientDetailsService 인터페이스
+
+    - DB(관계/비관계형 모두 포함)를 사용하여 Client를 인증해야 한다고 할 때, Client의 데이터 구조에 신경쓰지 않고 데이터를 사용하기 위해
+      Spring에서 제공되는 인터페이스
+      
+      
+*loadClientByClientId(String clientId)
+
+    - Client의 데이터 구조에 신경쓰지 않고, 단순히 HttpEntity 객체를 얻어와서 BaseClientDetails 객체를 만든다.
+      ClientDetailsService 인터페이스 구현시 반드시 오버라이드 해야 하는 메소드이다.
+
+
 # 8. MyUserDetailService.java
 <img width="550" alt="myuserdetailservice" src="https://user-images.githubusercontent.com/37721713/46654429-c781fe00-cbe3-11e8-85c4-6b27d28d8d7e.PNG">
 
@@ -349,6 +413,18 @@
 *RestTemplate
 
     - 스프링에서 제공하는 HTTP 통신에 유용하게 쓸 수 있는 템플릿이며, HTTP 서버와의 통신을 단순화하고 RESTful 원칙을 지킨다.
+
+
+*UserDetailsService
+
+    - User의 데이터 구조를 신경쓰지 않고, 단순히 HttpEntity 객체를 얻어와 UserDetails 객체를 만들기 위해 사용한다.
+      (User의 데이터가 어떻게 유지되고 있는지 알지 못해도 된다.)
+      
+      
+*loadUserByUsername(String username)
+
+    - UserDetailService 인터페이스를 구현할 때 반드시 오버라이딩해야 하는 메소드이다.
+      사용자명(username)을 기반으로 User를 찾기 위한 역할을 하며, UserDetails 객체를 반환한다.
 
 
 # 9. Account.java
