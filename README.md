@@ -43,11 +43,11 @@
     
     -> Resource Owner가 허가를 하면 Resource Server에 접속하게 된다. 그리고 해당 Client가 Resource Server에 접속하는 것을 허용하게 된다.
     
-    -> Resource Server는 Client에게 authorized code를 준다. 이것은 Resource Owner가 Client에게 Resource Server의 정보를 제공하도록 승인했다는 의미를 담는다.
+    -> Resource Server는 Client에게 authorization code를 준다. 이것은 Resource Owner가 Client에게 Resource Server의 정보를 제공하도록 승인했다는 의미를 담는다.
     
-    *authorized code만으로는 Resource Server에 접근할 수는 없다.
+    *authorization code만으로는 Resource Server에 접근할 수는 없다.
     
-    -> Client는 authorized code, Client ID, Client Secret을 담아서 Resource Server에 다시 보낸다.
+    -> Client는 authorization code, Client ID, Client Secret을 담아서 Resource Server에 다시 보낸다.
     
     -> Resource Server는 요청된 값들을 비교해서 권한을 달라고 하는 Client가 Resource Owner가 승인한 것인지를 검증한다. 
     
@@ -56,6 +56,9 @@
     -> Client는 access token을 저장(DB 또는 InMemory 등)해서 이것을 바탕으로 Resource Server에 접속 하게 된다. (보통 HTTP 헤더에 해당 토큰 정보를 넣어서 사용)
     
     -> Resource Server는 access token 값을 보고 자신이 발급한 것이라면 이것을 바탕으로 데이터를 Client에게 제공한다. Client는 이 데이터를 가공하여 Resource Owner에게 가치를 제공한다.
+
+
+*authorization code, access token을 Resource Server에서 넘겨줄 때 redirect_url을 설정해야 하는데 두 경우의 redirect_url이 동일해야 한다. 만약 다르거나 값이 없으면 401 에러(Unauthorized)가 발생한다. 정상동작을 위해서는 꼭 같은 값을 가져야 함!!!!
 
 
 *보통 이런 일련의 인증이 복잡하여 구글, 페이스북 등에서는 SDK를 제공하고 있다.
@@ -202,9 +205,9 @@
     
     -> Resource Server에서 Resource Owner에게 로그인이 안된 경우 로그인 요청 또는 해당 Client가 필요로 하는 scope를 확인할 수 있도록 한다.
     
-    -> Resource Owner가 허가하면, Resource Server가 Client에게 authorized code(Resource Owner가 해당 Client에게 Resource Server에 있는, 정보를 사용할 수 있게 하겠다는 허락에 대한 비밀번호)를 전송
+    -> Resource Owner가 허가하면, Resource Server가 Client에게 authorization code(Resource Owner가 해당 Client에게 Resource Server에 있는, 정보를 사용할 수 있게 하겠다는 허락에 대한 의미)를 전송
     
-    -> Resource Server가 전달한 authorized code와 Client ID, Client Secret을 하나로 묶어서 Resource Server에 다시 전달.
+    -> Resource Server가 전달한 authorization code와 Client ID, Client Secret을 하나로 묶어서 Resource Server에 다시 전달.
     
     -> Resource Server는 확인절차를 거쳐서 Client에게 access token을 발급.
     
